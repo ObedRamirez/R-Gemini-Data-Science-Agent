@@ -7,6 +7,14 @@
 
 A sophisticated multi-agent system that leverages LangChain and Google's Generative AI to orchestrate automated R data science workflows. The system translates natural language requests into production-ready R code, audits it for quality, and executes analyses in isolated Docker containers.
 
+## 🎥 Demo Video
+
+See the Dynamic R Analyst in action:
+
+[![Dynamic R Analyst Demo](https://img.youtube.com/vi/7ilEcXGnpag/maxresdefault.jpg)](https://www.youtube.com/watch?v=7ilEcXGnpag)
+
+*Click the image above to watch the full demonstration*
+
 ## 🌟 Features
 
 - **Natural Language Interface**: Describe your analysis needs in plain English
