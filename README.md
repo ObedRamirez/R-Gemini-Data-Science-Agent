@@ -108,6 +108,7 @@ text
 ## 📁 Project Structure
 
 dynamic-r-analyst/
+
 ├── README.md # This file
 ├── LICENSE # MIT License
 ├── .gitignore # Git ignore patterns
