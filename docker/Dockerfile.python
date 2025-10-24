@@ -1,0 +1,16 @@
+# Dockerfile
+# Start from the best data science base image.
+FROM r_data_science:V2.0
+
+# Add any extra packages needed for the specific, arbitrary script.
+# This makes the image perfectly tailored to the task.
+# RUN R -e "install.packages('arrow', repos='http://cran.rstudio.com/')"
+
+# Set the working directory inside the container.
+WORKDIR /app
+
+# Copy the agent-generated script into the container.
+COPY dynamic_script.Rmd .
+
+# Define the command to run the script.
+CMD ["Rscript", "-e", "rmarkdown::render('dynamic_script.Rmd', output_file = 'result.html')"]

@@ -1,0 +1,65 @@
+# Version control
+.git
+.gitignore
+.github
+
+# IDE and editor files
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+
+# R specific
+.Rhistory
+.RData
+.Rproj.user
+*.Rproj
+
+# Python specific
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+env/
+venv/
+*.egg-info/
+
+# Documentation
+*.md
+README*
+LICENSE
+CHANGELOG*
+docs/
+
+# Output files
+*.log
+*.out
+*.html
+*.pdf
+results/
+output/
+
+# Data files (adjust based on your needs)
+*.csv
+*.xlsx
+*.rds
+*.feather
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Old Dockerfiles
+Dockerfile.pt*
+Dockerfile.old
+
+# Requirements files (keep if needed for reference)
+# r_requirements.txt
+
+# Build artifacts
+*.o
+*.so
+*.dll

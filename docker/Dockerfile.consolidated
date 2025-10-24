@@ -1,0 +1,204 @@
+# R Data Science Docker Image for AI Agent with Statistics/ML Capabilities
+FROM rocker/tidyverse:4.4.1
+
+# Set maintainer information
+LABEL maintainer="obed_eo@hotmail.com"
+LABEL description="R Data Science Environment with comprehensive ML and statistics packages for AI agents"
+LABEL version="2.0"
+
+# Set environment variables
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=UTC
+ENV LANG=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
+ENV R_LIBS_USER="/usr/local/lib/R/site-library"
+
+# Update system packages and install system dependencies
+RUN apt-get update && apt-get install -y \
+    # System utilities
+    curl \
+    wget \
+    git \
+    vim \
+    nano \
+    htop \
+    tree \
+    unzip \
+    zip \
+    # Development tools
+    build-essential \
+    cmake \
+    gfortran \
+    libgraphviz-dev \
+    pkg-config \
+    # Graphics and visualization dependencies
+    libgsl0-dev \
+    libcairo2-dev \
+    libxt-dev \
+    libx11-dev \
+    libxss1 \
+    libgconf-2-4 \
+    xvfb \
+    # Database connectivity
+    libpq-dev \
+    libmysqlclient-dev \
+    unixodbc-dev \
+    # Image processing
+    libmagick++-dev \
+    libpng-dev \
+    libjpeg-dev \
+    libtiff-dev \
+    # Geospatial libraries
+    libgdal-dev \
+    libgeos-dev \
+    libproj-dev \
+    libudunits2-dev \
+    # Text processing
+    libxml2-dev \
+    libssl-dev \
+    libcurl4-openssl-dev \
+    # Compression
+    zlib1g-dev \
+    libbz2-dev \
+    liblzma-dev \
+    # Audio/video processing
+    libavfilter-dev \
+    # Python integration
+    python3 \
+    python3-pip \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python packages for integration with reticulate
+RUN pip3 install --no-cache-dir \
+    numpy \
+    pandas \
+    scipy \
+    scikit-learn \
+    matplotlib \
+    seaborn \
+    jupyter
+
+# Install GitHub packages (not available on CRAN)
+RUN Rscript -e "devtools::install_github('daroczig/logger')"
+
+# Install R packages grouped by category
+# Using install2.r for better dependency handling and --deps TRUE for all dependencies
+
+# Data Import/Export packages
+RUN install2.r --error --deps TRUE \
+    data.table \
+    dtplyr \
+    arrow \
+    fst \
+    qs \
+    jsonlite \
+    xml2 \
+    && rm -rf /tmp/downloaded_packages
+
+# Web scraping and API packages
+RUN install2.r --error --deps TRUE \
+    httr \
+    rvest \
+    && rm -rf /tmp/downloaded_packages
+
+# Data manipulation packages (tidyverse extensions)
+RUN install2.r --error --deps TRUE \
+    lubridate \
+    hms \
+    stringr \
+    forcats \
+    purrr \
+    tidyr \
+    dplyr \
+    && rm -rf /tmp/downloaded_packages
+
+# Visualization packages
+RUN install2.r --error --deps TRUE \
+    ggplot2 \
+    scales \
+    plotly \
+    ggthemes \
+    ggrepel \
+    gganimate \
+    patchwork \
+    corrplot \
+    pheatmap \
+    RColorBrewer \
+    viridis \
+    && rm -rf /tmp/downloaded_packages
+
+# Database connectivity packages
+RUN install2.r --error --deps TRUE \
+    DBI \
+    RSQLite \
+    RPostgres \
+    RMariaDB \
+    dbplyr \
+    && rm -rf /tmp/downloaded_packages
+
+# Parallel computing packages
+RUN install2.r --error --deps TRUE \
+    future \
+    furrr \
+    doParallel \
+    foreach \
+    && rm -rf /tmp/downloaded_packages
+
+# Machine Learning packages (pinned versions for reproducibility)
+RUN install2.r --error --deps TRUE \
+    caret@6.0-94 \
+    randomForest@4.7-1.2 \
+    xgboost@1.7.8.1 \
+    glmnet@4.1-8 \
+    e1071 \
+    factoextra \
+    subselect \
+    && rm -rf /tmp/downloaded_packages
+
+# ML metrics and evaluation packages
+RUN install2.r --error --deps TRUE \
+    MLmetrics \
+    ROCR \
+    pROC \
+    && rm -rf /tmp/downloaded_packages
+
+# Python integration
+RUN install2.r --error --deps TRUE \
+    reticulate \
+    && rm -rf /tmp/downloaded_packages
+
+# Reporting and documentation packages
+RUN install2.r --error --deps TRUE \
+    rmarkdown \
+    knitr \
+    && rm -rf /tmp/downloaded_packages
+
+# Interactive widgets and Shiny
+RUN install2.r --error --deps TRUE \
+    shiny \
+    DT \
+    && rm -rf /tmp/downloaded_packages
+
+# Development tools packages
+RUN install2.r --error --deps TRUE \
+    devtools \
+    usethis \
+    testthat \
+    roxygen2 \
+    profvis \
+    && rm -rf /tmp/downloaded_packages
+
+# Utility packages
+RUN install2.r --error --deps TRUE \
+    here \
+    config \
+    fs \
+    glue \
+    && rm -rf /tmp/downloaded_packages
+
+# Set the working directory
+WORKDIR /app
+
+# Default command starts R session
+CMD ["R"]

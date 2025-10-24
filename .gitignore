@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Environment variables
+.env
+.streamlit/secrets.toml
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# R and Docker
+*.Rhistory
+.RData
+.Rproj.user
+*.log
+result.html
+dynamic_script.Rmd
+
+# Data files
+*.csv
+*.xlsx
+data/
+
+# OS
+.DS_Store
+Thumbs.db
