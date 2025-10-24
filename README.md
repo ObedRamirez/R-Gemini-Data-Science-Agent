@@ -110,37 +110,62 @@ text
 dynamic-r-analyst/
 
 ├── README.md # This file
+
 ├── LICENSE # MIT License
+
 ├── .gitignore # Git ignore patterns
+
 ├── requirements.txt # Python dependencies
+
 │
 ├── src/ # Main source code
+
 │ ├── init.py
+
 │ ├── data_science_audit_agent_v2.py # Code auditor
+
 │ ├── data_science_prompt_agent_v2.py # Prompt translator
+
 │ ├── data_science_coding_agent_v2.py # R code generator
+
 │ └── dynamic_r_analyst_v2.py # Streamlit app
+
 │
+
 ├── docker/ # Docker configuration
+
 │ ├── Dockerfile.consolidated # R environment (recommended)
+
 │ ├── Dockerfile # Python/Streamlit environment
+
 │ ├── .dockerignore # Docker ignore patterns
+
 │ ├── r_requirements.txt # Full R package list
+
 │ └── README.md # Docker setup guide
+
 │
+
 ├── docs/ # Documentation
+
 │ ├── INSTALLATION.md # Detailed setup instructions
+
 │ ├── USAGE.md # Usage guide and examples
+
 │ └── ARCHITECTURE.md # System architecture details
+
 │
 ├── examples/ # Example files
+
 │ └── sample_analysis.csv
+
 │
 └── scripts/ # Utility scripts
+
 ├── build_docker.sh # Docker build automation
 └── run_app.sh # App launcher script
 
-text
+
 
 ## 🔧 Configuration
 
